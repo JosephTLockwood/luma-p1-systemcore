@@ -100,13 +100,18 @@ The password is `systemcore`. Nothing shows while you type it. The `systemcore` 
 
 1. **Download this repo.** On GitHub click **Code → Download ZIP** ([direct link](https://github.com/JosephTLockwood/luma-p1-systemcore/archive/refs/heads/main.zip)) and extract it. You get a folder `luma-p1-systemcore-main` with `p1-files` inside. (Or `git clone https://github.com/JosephTLockwood/luma-p1-systemcore.git`.)
 2. **Get the CANivore package** and put it in `p1-files`. CTRE only publishes it for image **17**: [`canivore-usb_1.18_systemcoreos_alphabeta_17.ipk`](https://ctre.download/files/systemcore/canivore-usb_1.18_systemcoreos_alphabeta_17.ipk) (155 KB; there's no folder listing, so use this direct link). Its kernel module was built for `6.12.112-v8-16k` PREEMPT_RT, the same kernel as beta18, so it loads fine.
-3. **Copy the kit and run it.** Open PowerShell **in the extracted `luma-p1-systemcore-main` folder** (in Explorer: open the folder, then type `powershell` in the address bar and press Enter). The password is `systemcore` if you skipped the SSH key.
-   ```bash
+3. **Copy the kit and run it**, in **PowerShell** on the laptop. First `cd` into the folder that **contains** `p1-files` (not into `p1-files` itself). Windows "Extract All" nests the folder, so it's usually the *inner* one:
+   ```powershell
+   cd "$env:USERPROFILE\Downloads\luma-p1-systemcore-main\luma-p1-systemcore-main"
+   ```
+   `dir` should now list `p1-files` and `README.md`. Then copy the kit to the P1 and run the installer there (password `systemcore` if you skipped the SSH key):
+   ```powershell
    scp -r p1-files systemcore@robot.local:/tmp/
    ```
-   ```bash
+   ```powershell
    ssh -t systemcore@robot.local 'cd /tmp/p1-files && sudo sh install.sh'
    ```
+   The first command copies the folder onto the P1. The second logs in and runs `install.sh` **on the P1**; it never runs on the laptop.
 4. If it says `config.txt changed: reboot to apply`, reboot:
    ```bash
    ssh systemcore@robot.local 'sudo reboot'
