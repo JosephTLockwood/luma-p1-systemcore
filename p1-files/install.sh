@@ -71,7 +71,7 @@ part_canivore() {
     say "CANivore: installing $(basename "$IPK")"
     opkg install "$IPK"
   else
-    warn "CANivore: no canivore-usb_*.ipk next to install.sh (see README step 6: https://ctre.download/files/systemcore/canivore-usb_1.18_systemcoreos_alphabeta_17.ipk); skipping"
+    warn "CANivore: no canivore-usb_*.ipk next to install.sh (see README Step 3: https://ctre.download/files/systemcore/canivore-usb_1.18_systemcoreos_alphabeta_17.ipk); skipping"
   fi
 }
 
@@ -114,7 +114,6 @@ part_net() {
     warn "no team number set yet; set it on the dashboard and the address follows within 10 s"
   else
     echo "   eth0: $(ip -4 -o addr show dev eth0 | awk '{printf "%s ", $4}')"
-    echo "   laptop needs an address in 10.$((T / 100)).$((T % 100)).0/24 (e.g. .5) for the H.264 stream"
   fi
 }
 
