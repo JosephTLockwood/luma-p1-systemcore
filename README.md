@@ -90,7 +90,7 @@ The 2027 code needs firmware **26.70.x** on the motor and the CANivore. If the D
 
 1. Make sure the robot code from Step 4 is running. Tuner X talks to the robot through it.
 2. Open **Tuner X _Preview_** → connect to **`robot.local`** → sign in with `systemcore` / `systemcore`.
-3. Update **both** the Talon FX and the CANivore to the newest **26.70.x**. Don't unplug power while it updates.
+3. Update **both** the Talon FX and the CANivore to the newest **26.70.x** (under alpha-7 NOT 2026). Don't unplug power while it updates.
 4. Restart the robot code:
    ```powershell
    ssh systemcore@robot.local 'sudo systemctl restart robot'
