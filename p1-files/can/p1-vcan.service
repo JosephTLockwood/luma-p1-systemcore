@@ -1,0 +1,16 @@
+# Luma P1: no onboard MCP2518 CAN chips. Create virtual can_s0..can_s4 so
+# SystemCore CAN services and the WPILib HAL find the interfaces they expect.
+# Real CAN goes through the CANivore over USB.
+[Unit]
+Description=P1 placeholder vcan interfaces (can_s0-can_s4)
+DefaultDependencies=no
+After=systemd-modules-load.service
+Before=limelight_canbusconfig.service limelight_canbusprocess.service limelight_canbusloadmon.service limelight_canbussniffer.service limelight_canbuswatchdog.service robot.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh -c "modprobe vcan; for i in 0 1 2 3 4; do ip link show can_s$i >/dev/null 2>&1 || ip link add can_s$i type vcan; ip link set can_s$i up; done"
+
+[Install]
+WantedBy=multi-user.target

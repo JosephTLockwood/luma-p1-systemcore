@@ -1,0 +1,11 @@
+[Unit]
+Description=Luma P1: route CSI OV9281 for Limelight visionserver (fake USB camera)
+Before=limelight_visionserver.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sh /usr/local/bin/p1-llcam-setup.sh
+
+[Install]
+WantedBy=multi-user.target

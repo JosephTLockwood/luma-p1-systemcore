@@ -1,0 +1,4 @@
+# Everything here ends up on Linux (the P1): keep LF even in Windows checkouts,
+# otherwise install.sh and the systemd units break after scp.
+* text=auto eol=lf
+*.so binary

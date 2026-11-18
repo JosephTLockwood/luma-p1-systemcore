@@ -1,0 +1,11 @@
+[Unit]
+Description=Luma P1: keep team address 10.TE.AM.2/24 on eth0 (WebRTC needs a non-link-local IP)
+After=network.target
+
+[Service]
+ExecStart=/bin/sh /usr/local/bin/p1-teamip.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

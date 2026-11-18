@@ -1,0 +1,7 @@
+# SystemCore image (download it from Limelight's releases; see README step 4)
+image/
+# Robot code lives in its own repo: https://github.com/Hemlock5712/Workshop-Code (branch p1-flywheel)
+Workshop-Code/
+# CTRE's CANivore package: download from https://ctre.download/files/systemcore/
+packages/
+*.ipk
