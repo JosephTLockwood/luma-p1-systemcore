@@ -71,7 +71,7 @@ part_canivore() {
     say "CANivore: installing $(basename "$IPK")"
     opkg install "$IPK"
   else
-    warn "CANivore: no canivore-usb_*.ipk next to install.sh (get it from https://ctre.download/files/systemcore/); skipping"
+    warn "CANivore: no canivore-usb_*.ipk next to install.sh (see README step 6: https://ctre.download/files/systemcore/canivore-usb_1.18_systemcoreos_alphabeta_17.ipk); skipping"
   fi
 }
 

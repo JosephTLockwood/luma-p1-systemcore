@@ -2,6 +2,6 @@
 image/
 # Robot code lives in its own repo: https://github.com/Hemlock5712/Workshop-Code (branch p1-flywheel)
 Workshop-Code/
-# CTRE's CANivore package: download from https://ctre.download/files/systemcore/
+# CTRE's CANivore package: https://ctre.download/files/systemcore/canivore-usb_1.18_systemcoreos_alphabeta_17.ipk
 packages/
 *.ipk

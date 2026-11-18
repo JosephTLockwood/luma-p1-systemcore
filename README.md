@@ -98,15 +98,16 @@ The password is `systemcore`. Nothing shows while you type it. The `systemcore` 
 | `camera` | Makes the onboard OV9281 show up in SystemCore's Limelight vision as a USB camera | See [step 10](#10-limelight-vision-on-the-onboard-camera) |
 | `net` | Keeps the FRC robot address **10.TE.AM.2/24** on `eth0` (from the dashboard team number), next to whatever DHCP or link-local gives it | The Limelight **H.264(UDP)** stream never uses link-local `169.254.x` addresses, so on a direct cable it silently falls back to MJPEG |
 
-1. **Get the CANivore package.** CTRE only publishes it for image **17**: `canivore-usb_1.18_systemcoreos_alphabeta_17.ipk` (155 KB) from https://ctre.download/files/systemcore/. Its kernel module was built for `6.12.112-v8-16k` PREEMPT_RT, the same kernel as beta18, so it loads fine. Drop it into `p1-files/`.
-2. **Copy the kit and run it** (password `systemcore` if you skipped the SSH key):
+1. **Download this repo.** On GitHub click **Code → Download ZIP** ([direct link](https://github.com/JosephTLockwood/luma-p1-systemcore/archive/refs/heads/main.zip)) and extract it. You get a folder `luma-p1-systemcore-main` with `p1-files` inside. (Or `git clone https://github.com/JosephTLockwood/luma-p1-systemcore.git`.)
+2. **Get the CANivore package** and put it in `p1-files`. CTRE only publishes it for image **17**: [`canivore-usb_1.18_systemcoreos_alphabeta_17.ipk`](https://ctre.download/files/systemcore/canivore-usb_1.18_systemcoreos_alphabeta_17.ipk) (155 KB; there's no folder listing, so use this direct link). Its kernel module was built for `6.12.112-v8-16k` PREEMPT_RT, the same kernel as beta18, so it loads fine.
+3. **Copy the kit and run it.** Open PowerShell **in the extracted `luma-p1-systemcore-main` folder** (in Explorer: open the folder, then type `powershell` in the address bar and press Enter). The password is `systemcore` if you skipped the SSH key.
    ```bash
    scp -r p1-files systemcore@robot.local:/tmp/
    ```
    ```bash
    ssh -t systemcore@robot.local 'cd /tmp/p1-files && sudo sh install.sh'
    ```
-3. If it says `config.txt changed: reboot to apply`, reboot:
+4. If it says `config.txt changed: reboot to apply`, reboot:
    ```bash
    ssh systemcore@robot.local 'sudo reboot'
    ```
