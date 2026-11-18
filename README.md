@@ -37,7 +37,7 @@ What that means:
     - The kit is rated 12 W. That's plenty for the P1 plus the CANivore's USB power on the bench.
     - The link runs at **100 Mbps**, because passive kits carry power on the spare pairs. That's fine for robot code and the Driver Station.
   - Don't use an *active* 802.3af/at injector. It only powers devices that ask for it, and the P1's PoE is passive.
-- **Ethernet cable**, 24 AWG (not "slim").
+- **Ethernet cable**.
 - **CTRE CANivore** + USB-C→USB-A cable, plugged into the P1's USB-A port.
 - **CAN devices** with their own 12 V power (we used one Talon FX on a flywheel) and bus termination (the CANivore's built-in termination is on).
 - **Xbox controller** for the Driver Station.
