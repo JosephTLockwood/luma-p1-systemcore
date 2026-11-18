@@ -77,13 +77,14 @@ Then unplug USB-C. Etcher ejects the drive when it's done, and the installer in 
 4. **Set the team number** on the dashboard (we used **5712**). It applies live; no power cycle needed.
 
 ### SSH access (optional, handy)
-```bash
-ssh-keygen -t ed25519 -f ~/.ssh/p1_systemcore -N ""
+In PowerShell (`'""'` is needed because Windows PowerShell drops a plain `""` argument, and then `ssh-keygen` fails with "option requires an argument -- N"):
+```powershell
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.ssh" | Out-Null; ssh-keygen -t ed25519 -f "$env:USERPROFILE\.ssh\p1_systemcore" -N '""'
 ```
 ```powershell
 Get-Content $env:USERPROFILE\.ssh\p1_systemcore.pub | ssh systemcore@robot.local "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
 ```
-The password is `systemcore`. Nothing shows while you type it. The `systemcore` user has passwordless `sudo`. There's also a web terminal at http://robot.local:4901.
+The password is `systemcore`. Nothing shows while you type it. The `systemcore` user has passwordless `sudo`. The rest of this guide uses plain `ssh systemcore@robot.local`, which asks for the password. To use the key instead, add `-i "$env:USERPROFILE\.ssh\p1_systemcore"` to `ssh`/`scp`. There's also a web terminal at http://robot.local:4901.
 
 ## 6. Run the P1 kit installer
 
@@ -164,7 +165,7 @@ How to update:
 3. Field-upgrade **both the Talon FX and the CANivore** to the latest **26.70.x**. Don't cut power during a flash.
 4. **Restart the robot code afterwards.** The flywheel applies its config **once at startup**, so a program started on old firmware keeps the failed config (zero Motion Magic values, so the motor never moves) until it restarts:
    ```bash
-   ssh -i ~/.ssh/p1_systemcore systemcore@robot.local 'sudo systemctl restart robot'
+   ssh systemcore@robot.local 'sudo systemctl restart robot'
    ```
    Redeploying does this too.
 
